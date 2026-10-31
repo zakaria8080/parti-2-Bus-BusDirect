@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BusDirect</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
+        integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="cabine.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <header class="in-top-page">
+        <div class="img-and-logo">
+            <img src="img/Gemini_Generated_Image_wvru1qwvru1qwvru-removebg-preview.png" alt="img about bus and logo"
+                class="logo-of-bus">
+            <span class="BusDirect-logo"><b>BusDirect</b></span>
+        </div>
+        <div class="links-of-ticket-andSeats">
+            <a href="index.html" class="Seats active-link">Seats</a>
+            <a href="tickets.html" class="tickets" style="color: white;" class="active-link">Tickets</a>
+        </div>
+    </header>
+    <section class="afficher-total-cabine">
+        <div class="availble-espace">
+            <span class="Available-titre titreaffichage">Available</span>
+            <p class="number-Available numberaffichage">20</p>
+        </div>
+        <div class="Occupied-affichage-cabine">
+            <span class="Occupied-titre titreaffichage">Available</span>
+            <p class="number-Occupied numberaffichage">0</p>
+        </div>
+    </section>
+    <section class="recherche-categori">
+        <div class="recherche-ville-named catio">
+            <label for="name" class="cherche-ville">Rechercher une ville</label>
+            <input type="search" id="ex-recherche-safi" placeholder="EX: Safi , Dakhla ....">
+        </div>
+        <div class="categori-page-and-options catio">
+            <label for="options" id="label-categori"> Status</label>
+            <select name="option" id="categorie-options" class="categorie-options">
+                <option value="#">Tous
+                <option value="#">Disponible</option>
+                <option value="#">Complet</option>
+                </option>
+            </select>
+        </div>
+    </section>
+    <script src="/js/store.js"></script>
+</body>
+
+</html>
