@@ -6,17 +6,26 @@ let page = 1;
 export function showTrips(trips) {
     const section = document.querySelector(".recherche-categori");
     const input = section.querySelector("input");
+    const select = section.querySelector("select");
     const wrapper = document.createElement("div");
     wrapper.className = "mx-auto max-w-6xl px-4 pb-10";
     section.after(wrapper);
 
     function showCards() {
         const search = input.value.toLowerCase();
+        const status = select.value;
         const results = [];
 
         for (const trip of trips) {
             const text = (trip.departure + " " + trip.destination).toLowerCase();
-            if (text.includes(search)) {
+            const full = trip.reservations.length >= trip.capacity; // جديد
+
+            const matchStatus = // جديد
+                status === "all" ||
+                (status === "available" && !full) ||
+                (status === "full" && full);
+
+            if (text.includes(search) && matchStatus) { 
                 results.push(trip);
             }
         }
@@ -72,6 +81,11 @@ export function showTrips(trips) {
     }
 
     input.addEventListener("input", function () {
+        page = 1;
+        showCards();
+    });
+
+    select.addEventListener("change", function () {
         page = 1;
         showCards();
     });
