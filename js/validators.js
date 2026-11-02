@@ -1,2 +1,4 @@
 import { fetchTrips, showTrips } from "./export.js";
-showTrips((await fetchTrips()).slice(0, 3));
+
+const trips = await fetchTrips();
+showTrips(trips);
