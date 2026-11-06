@@ -1,11 +1,4 @@
-import { fetchTrips, showTrips } from "./export.js";
 
-async function start() {
-    const trips = await fetchTrips();
-    showTrips(trips);
-}
-
-start();
 export const regexTelephone = /^0[67][0-9]{8}$/;
 
 export function validerNom(nom, trip, seatIgnore) {

@@ -1,11 +1,4 @@
-import { fetchTrips, showTrips } from "./export.js";
 
-async function start() {
-    const trips = await fetchTrips();
-    showTrips(trips);
-}
-
-start();
 export async function chargerTrajets() {
     let texte = localStorage.getItem("busdirect_trips");
     if (texte !== null) {
