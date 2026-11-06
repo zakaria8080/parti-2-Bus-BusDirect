@@ -584,4 +584,3 @@ function init(trip) {
     remplirChoixPlaces();
     actualiser();
 }
-
