@@ -1,6 +1,6 @@
 const id = new URLSearchParams(location.search).get("id");
 
-fetch("./Data/trips.json")
+fetch("./data/trips.json")
     .then(function (res) { return res.json(); })
     .then(function (trips) {
         const trip = trips.find(function (t) { return String(t.id) === id; });
