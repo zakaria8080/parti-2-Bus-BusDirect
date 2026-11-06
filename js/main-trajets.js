@@ -1,11 +1,4 @@
-import { fetchTrips, showTrips } from "./export.js";
 
-async function start() {
-    const trips = await fetchTrips();
-    showTrips(trips);
-}
-
-start();
 import { chargerTrajets } from "./store.js";
 import { placesLibres } from "./reservations.js";
 import { afficherCartes, afficherStats, afficherPagination } from "./render.js";
