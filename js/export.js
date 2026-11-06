@@ -144,4 +144,3 @@ export function showTrips(trips) {
 
     showStats(trips);
     showCards();
-}
