@@ -1,7 +1,51 @@
-export const fetchTrips = () => fetch("./Data/trips.json").then((res) => res.json());
+export async function fetchTrips() {
+    const response = await fetch("./data/trips.json");
+    const trips = await response.json();
+
+    for (const trip of trips) {
+        if (trip.waitingList === undefined) {
+            trip.waitingList = [];
+        }
+
+        const saved = JSON.parse(localStorage.getItem("trip_" + trip.id));
+        if (saved !== null) {
+            trip.reservations = saved.reservations;
+            trip.waitingList = saved.waitingList;
+        }
+    }
+    return trips;
+}
 
 const perPage = 6;
 let page = 1;
+
+function seatPrice(trip, seat) {
+    if (seat >= 1 && seat <= 4) {
+        return Math.round(trip.price * 1.1);
+    }
+    return trip.price;
+}
+
+function showStats(trips) {
+    let revenue = 0;
+    let passengers = 0;
+
+    for (const trip of trips) {
+        for (const r of trip.reservations) {
+            revenue = revenue + seatPrice(trip, r.seat);
+        }
+        passengers = passengers + trip.reservations.length;
+    }
+
+    const revenueSpan = document.getElementById("stat-revenue");
+    const passengersSpan = document.getElementById("stat-passengers");
+    if (revenueSpan !== null) {
+        revenueSpan.textContent = revenue + " DH";
+    }
+    if (passengersSpan !== null) {
+        passengersSpan.textContent = passengers;
+    }
+}
 
 export function showTrips(trips) {
     const section = document.querySelector(".recherche-categori");
@@ -18,14 +62,14 @@ export function showTrips(trips) {
 
         for (const trip of trips) {
             const text = (trip.departure + " " + trip.destination).toLowerCase();
-            const full = trip.reservations.length >= trip.capacity; // جديد
+            const full = trip.reservations.length >= trip.capacity;
 
-            const matchStatus = // جديد
+            const matchStatus =
                 status === "all" ||
                 (status === "available" && !full) ||
                 (status === "full" && full);
 
-            if (text.includes(search) && matchStatus) { 
+            if (text.includes(search) && matchStatus) {
                 results.push(trip);
             }
         }
@@ -57,6 +101,7 @@ export function showTrips(trips) {
                         <span class="rounded-full bg-${color}-100 px-2 py-1 text-xs text-${color}-700">${reserved}/${trip.capacity}</span>
                     </div>
                     <p class="mt-2 text-sm text-slate-500">${trip.departureTime} - ${trip.arrivalTime}</p>
+                    <p class="mt-1 text-sm text-slate-500">Attente : ${trip.waitingList.length}</p>
                     <div class="mt-4 flex justify-between">
                         <b class="text-${color}-600">${trip.price} DH</b>
                         <a href="./cabine.html?id=${trip.id}" class="rounded-lg bg-${color}-500 px-4 py-2 text-sm text-white">${text}</a>
@@ -97,5 +142,6 @@ export function showTrips(trips) {
         showCards();
     });
 
+    showStats(trips);
     showCards();
 }
