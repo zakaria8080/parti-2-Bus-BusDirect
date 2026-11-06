@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BusDirect</title>
+    <title>BusDirect — Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
         integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -44,40 +44,66 @@
         </div>
     </header>
 
-    <section class="afficher-total-cabine mx-auto grid max-w-6xl grid-cols-2 gap-3 px-4 pt-6 sm:gap-4 sm:px-6">
-        <div
-            class="availble-espace flex flex-col gap-1 rounded-2xl border border-teal-200 bg-teal-50 p-4 shadow-sm sm:p-5">
-            <span
-                class="Available-titre titreaffichage text-xs font-semibold uppercase tracking-wider text-teal-700 sm:text-sm">Available</span>
-            <p class="number-Available numberaffichage text-3xl font-bold text-teal-600 sm:text-4xl">20</p>
-        </div>
-        <div
-            class="Occupied-affichage-cabine flex flex-col gap-1 rounded-2xl border border-rose-200 bg-rose-50 p-4 shadow-sm sm:p-5">
-            <span
-                class="Occupied-titre titreaffichage text-xs font-semibold uppercase tracking-wider text-rose-700 sm:text-sm">Available</span>
-            <p class="number-Occupied numberaffichage text-3xl font-bold text-rose-600 sm:text-4xl">0</p>
-        </div>
-    </section>
+    <main id="main">
+        <!-- Dashboard : total des places de TOUTES les cabines -->
+        <section aria-labelledby="dashboard-title"
+            class="afficher-total-cabine mx-auto max-w-6xl px-4 pt-6 sm:px-6">
+            <h1 id="dashboard-title" class="mb-4 text-xl font-bold text-slate-900 sm:text-2xl">
+                Dashboard <span class="text-sm font-medium text-slate-500">— all cabins</span>
+            </h1>
 
-    <section
-        class="recherche-categori mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 sm:flex-row sm:items-end sm:px-6">
-        <div class="recherche-ville-named catio flex flex-1 flex-col gap-1.5">
-            <label for="name" class="cherche-ville text-sm font-semibold text-slate-700">Rechercher une ville</label>
-            <input type="search" id="ex-recherche-safi" placeholder="EX: Safi , Dakhla ...."
-                class="min-h-11 w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm text-slate-800 placeholder-slate-400 shadow-sm outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500/30">
-        </div>
-        <div class="categori-page-and-options catio flex flex-col gap-1.5 sm:w-56">
-            <label for="options" id="label-categori" class="text-sm font-semibold text-slate-700"> Status</label>
-            <select name="option" id="categorie-options"
-                class="categorie-options min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500/30">
-                <option value="all">Tous</option>
-                <option value="available">Disponible</option>
-                <option value="full">Complet</option>
-            </select>
-        </div>
-    </section>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4" aria-live="polite">
+                <div class="flex flex-col gap-1 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+                    <span
+                        class="titreaffichage text-xs font-semibold uppercase tracking-wider text-slate-600 sm:text-sm">Total
+                        seats</span>
+                    <p id="stat-total" class="numberaffichage text-3xl font-bold text-slate-800 sm:text-4xl">0</p>
+                </div>
+                <div
+                    class="availble-espace flex flex-col gap-1 rounded-2xl border border-teal-200 bg-teal-50 p-4 shadow-sm sm:p-5">
+                    <span
+                        class="Available-titre titreaffichage text-xs font-semibold uppercase tracking-wider text-teal-700 sm:text-sm">Available</span>
+                    <p id="stat-available"
+                        class="number-Available numberaffichage text-3xl font-bold text-teal-600 sm:text-4xl">0</p>
+                </div>
+                <div
+                    class="Occupied-affichage-cabine flex flex-col gap-1 rounded-2xl border border-rose-200 bg-rose-50 p-4 shadow-sm sm:p-5">
+                    <span
+                        class="Occupied-titre titreaffichage text-xs font-semibold uppercase tracking-wider text-rose-700 sm:text-sm">Occupied</span>
+                    <p id="stat-occupied"
+                        class="number-Occupied numberaffichage text-3xl font-bold text-rose-600 sm:text-4xl">0</p>
+                </div>
+                <div
+                    class="flex flex-col gap-1 rounded-2xl border border-amber-200 bg-amber-50 p-4 shadow-sm sm:p-5">
+                    <span
+                        class="titreaffichage text-xs font-semibold uppercase tracking-wider text-amber-700 sm:text-sm">Total
+                        revenue</span>
+                    <p id="stat-revenue" class="numberaffichage text-3xl font-bold text-amber-600 sm:text-4xl">0 DH</p>
+                </div>
+            </div>
+        </section>
 
-    <script src="/js/store.js"></script>
+        <section
+            class="recherche-categori mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 sm:flex-row sm:items-end sm:px-6">
+            <div class="recherche-ville-named catio flex flex-1 flex-col gap-1.5">
+                <label for="ex-recherche-safi" class="cherche-ville text-sm font-semibold text-slate-700">Rechercher une
+                    ville</label>
+                <input type="search" id="ex-recherche-safi" placeholder="EX: Safi , Dakhla ...."
+                    class="min-h-11 w-full rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm text-slate-800 placeholder-slate-400 shadow-sm outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500/30">
+            </div>
+            <div class="categori-page-and-options catio flex flex-col gap-1.5 sm:w-56">
+                <label for="categorie-options" id="label-categori" class="text-sm font-semibold text-slate-700">
+                    Status</label>
+                <select name="option" id="categorie-options"
+                    class="categorie-options min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500/30">
+                    <option value="all">Tous</option>
+                    <option value="available">Disponible</option>
+                    <option value="full">Complet</option>
+                </select>
+            </div>
+        </section>
+    </main>
+
     <script type="module" src="./js/validators.js"></script>
 </body>
 
