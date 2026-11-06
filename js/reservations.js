@@ -6,7 +6,7 @@ async function start() {
 }
 
 start();
-const URL_TRAJETS = "./Data/trips.json";
+const URL_TRAJETS = "./data/trips.json";
 const PREFIXE_CLE = "trip_";
 
 let trajets = [];
