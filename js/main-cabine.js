@@ -1,3 +1,4 @@
+
 import { chargerTrajets, sauvegarderTrajets, trouverTrajet } from "./store.js";
 import { estVip, prixSiege, trouverReservation, reserver, modifier, annuler, retirerAttente } from "./reservations.js";
 import { afficherCabine, afficherNotification, remplirSiegesModif } from "./render.js";

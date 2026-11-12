@@ -12,6 +12,7 @@ let pagination = document.getElementById("pagination");
 let recherche = document.getElementById("search-input");
 let filtre = document.getElementById("status-filter");
 
+// kat-rje3 les trajets li kaysaw l-recherche (ville) u l-filtre (all / available / full)
 function filtrer() {
     let texte = recherche.value.trim().toLowerCase();
     let statut = filtre.value;
@@ -36,6 +37,7 @@ function filtrer() {
     return resultat;
 }
 
+// kat-affichi cartes dyal page l7aliya (6 f kol page), pagination u stats
 function actualiser() {
     let liste = filtrer();
     let nbPages = Math.ceil(liste.length / parPage);
@@ -55,6 +57,7 @@ function actualiser() {
     afficherStats(trajets);
 }
 
+// kat-chargi les trajets (async/await) u kat-7el l-recherche u l-filtre
 async function demarrer() {
     trajets = await chargerTrajets();
 
