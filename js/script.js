@@ -54,12 +54,10 @@ function init(trip) {
     const msgAnn = document.getElementById('cancel-notification');
 
     // ---------- Regex ----------
-    // Name: letters (Latin, accented, Arabic), separated by space, apostrophe or hyphen
     const REGEX_NOM = /^[A-Za-zÀ-ÿ\u0600-\u06FF]+(?:[ '-][A-Za-zÀ-ÿ\u0600-\u06FF]+)*$/;
-    // Moroccan mobile phone: 06 or 07 followed by 8 digits
+    
     const REGEX_TEL = /^0[67]\d{8}$/;
 
-    // ---------- Phone fields (created if missing in the HTML) ----------
     function creerChampTel(idChamp, apres) {
         const input = document.createElement('input');
         input.type = 'tel';
